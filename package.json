@@ -15,7 +15,8 @@
   "description": "A simple wrapper to render Next.js's active Link",
   "scripts": {
     "rollup": "rm -rf dist && rollup -c",
-    "rollup:watch": "rollup -c -w"
+    "rollup:watch": "rollup -c -w",
+    "test": "jest"
   },
   "license": "MIT",
   "peerDependencies": {
@@ -24,13 +25,21 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.2",
     "@rollup/plugin-typescript": "^8.3.0",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.4.0",
     "@types/node": "^12.12.21",
     "@types/prettier": "^2.4.2",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
+    "babel-jest": "^27.4.5",
+    "jest": "^27.4.5",
     "prettier": "^2.5.1",
     "rollup": "^2.62.0",
     "rollup-plugin-dts": "^4.1.0",
