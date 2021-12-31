@@ -1,16 +1,27 @@
 {
   "name": "next-active-link",
   "version": "1.0.0",
-  "main": "src/index.tsx",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/mononoke-choi/next-active-link.git",
   "author": "wonyoung.choi <mononoke.choi@gmail.com>",
-  "description": "TODO",
+  "description": "A simple wrapper to render Next.js's active Link",
+  "scripts": {
+    "rollup": "rollup -c"
+  },
   "license": "MIT",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.2",
+    "@rollup/plugin-typescript": "^8.3.0",
     "@types/prettier": "^2.4.2",
-    "prettier": "^2.5.1"
-  },
-  "dependencies": {
+    "prettier": "^2.5.1",
+    "rollup": "^2.62.0",
+    "rollup-plugin-dts": "^4.1.0",
     "next": "^12.0.7",
     "typescript": "^4.5.4"
   }
