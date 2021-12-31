@@ -1,5 +1,5 @@
 {
-  "name": "mononoke-choi/next-active-link",
+  "name": "@mononoke-choi/next-active-link",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/mononoke-choi"
   },
