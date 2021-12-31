@@ -14,23 +14,28 @@
   "author": "wonyoung.choi <mononoke.choi@gmail.com>",
   "description": "A simple wrapper to render Next.js's active Link",
   "scripts": {
-    "rollup": "rm -rf dist && rollup -c"
+    "rollup": "rm -rf dist && rollup -c",
+    "rollup:watch": "rollup -c -w"
   },
   "license": "MIT",
+  "peerDependencies": {
+    "next": "^12.0.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.2",
     "@rollup/plugin-typescript": "^8.3.0",
+    "@types/node": "^12.12.21",
     "@types/prettier": "^2.4.2",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
     "prettier": "^2.5.1",
     "rollup": "^2.62.0",
     "rollup-plugin-dts": "^4.1.0",
-    "next": "^12.0.7",
-    "typescript": "^4.5.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "@types/node": "^12.12.21",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.1"
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.5.4"
   }
 }

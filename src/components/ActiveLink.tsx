@@ -4,6 +4,8 @@ export interface ActiveLinkProps {
   text?: string;
 }
 
-const ActiveLink = (props: ActiveLinkProps) => <Link href={'/'} {...props} />;
+const ActiveLink = ({ text }: ActiveLinkProps) => (
+  <Link href={'/'}>{text}</Link>
+);
 
 export default ActiveLink;
