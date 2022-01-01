@@ -8,34 +8,41 @@ import { terser } from 'rollup-plugin-terser';
 
 const packageJson = require('./package.json');
 
-export default [
-  {
-    input: 'src/index.ts',
-    output: [
-      {
-        file: packageJson.main,
-        format: 'cjs',
-        sourcemap: true,
-      },
-      {
-        file: packageJson.module,
-        format: 'esm',
-        sourcemap: true,
-      },
-    ],
-    plugins: [
-      peerDepsExternal(),
-      optimizeLodashImports(),
-      resolve(),
-      commonjs(),
-      typescript({ tsconfig: './tsconfig.json', outputToFilesystem: false }),
-      terser(),
-    ],
-    external: ['react', 'react-dom', 'next'],
-  },
-  {
-    input: 'dist/esm/types/index.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts()],
-  },
-];
+/**
+ * @type {import('rollup').RollupOptions}
+ */
+const entryConfig = {
+  input: 'src/index.ts',
+  output: [
+    {
+      file: packageJson.main,
+      format: 'cjs',
+      sourcemap: true,
+    },
+    {
+      file: packageJson.module,
+      format: 'esm',
+      sourcemap: true,
+    },
+  ],
+  plugins: [
+    peerDepsExternal(),
+    optimizeLodashImports(),
+    resolve(),
+    commonjs(),
+    typescript({ tsconfig: './tsconfig.json', outputToFilesystem: false }),
+    terser(),
+  ],
+  external: ['react', 'react-dom', 'next'],
+};
+
+/**
+ * @type {import('rollup').RollupOptions}
+ */
+const definitionConfig = {
+  input: 'dist/esm/types/index.d.ts',
+  output: [{ file: 'dist/index.d.ts', format: 'esm' }],
+  plugins: [dts()],
+};
+
+export default [entryConfig, definitionConfig];
