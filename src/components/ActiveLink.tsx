@@ -6,10 +6,9 @@ export interface ActiveLinkProps {
 }
 
 // todo
-// - change library name
 // - change to component real logic
-// - deploy to npm
-// - check library size
+// - change library name to unscoped package
+// - deploy to npm too
 // - rewrite test code
 
 const ActiveLink = ({ text }: ActiveLinkProps) => (
