@@ -1,9 +1,9 @@
 {
-  "name": "next-active-link",
+  "name": "@mononoke-choi/next-active-link",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/mononoke-choi"
   },
-  "version": "1.0.1",
+  "version": "0.0.1",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "files": [
@@ -16,7 +16,8 @@
   "scripts": {
     "rollup": "rm -rf dist && rollup -c",
     "rollup:watch": "rollup -c -w",
-    "test": "jest"
+    "test": "jest",
+    "publish": "rm -rf dist && npm run rollup && npm publish"
   },
   "license": "MIT",
   "peerDependencies": {
