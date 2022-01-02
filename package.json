@@ -14,9 +14,10 @@
   "author": "wonyoung.choi <mononoke.choi@gmail.com>",
   "description": "A simple wrapper to render Next.js's active Link",
   "scripts": {
-    "rollup": "rm -rf dist && rollup -c",
-    "rollup:watch": "rollup -c -w",
-    "publish": "rm -rf dist && npm run rollup && npm publish"
+    "rollup:dev": "rm -rf dist && NODE_ENV=development rollup -c",
+    "rollup:prod": "rm -rf dist && NODE_ENV=production rollup -c",
+    "rollup:watch": "NODE_ENV=development rollup -c -w",
+    "publish": "npm run rollup:prod && npm publish"
   },
   "license": "MIT",
   "peerDependencies": {

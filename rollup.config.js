@@ -7,6 +7,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { terser } from 'rollup-plugin-terser';
 
 const packageJson = require('./package.json');
+const isProd = process.env.NODE_ENV === 'production';
 
 /**
  * @type {import('rollup').RollupOptions}
@@ -31,7 +32,7 @@ const entryConfig = {
     resolve(),
     commonjs(),
     typescript({ tsconfig: './tsconfig.json', outputToFilesystem: false }),
-    terser(),
+    ...(isProd ? [terser()] : []),
   ],
   external: ['react', 'react-dom', 'next'],
 };
