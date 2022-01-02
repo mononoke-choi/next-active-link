@@ -1,0 +1,98 @@
+*, *::after, *::before {
+  box-sizing : border-box;
+  margin : 0;
+  padding : 0;
+}
+
+body {
+  background : #dddddd;
+  min-height : 100vh;
+  min-width : 100vw;
+}
+
+body, #__next, main {
+  display : flex;
+  flex : 1;
+  flex-direction : column;
+}
+
+main {
+  align-items : center;
+  justify-content : center;
+}
+
+nav {
+  background : #ffffff;
+  border-color : #4d4d4d;
+  border-style : solid;
+  border-width : 0;
+  display : flex;
+  left : 0;
+  position : fixed;
+  right : 0;
+  width : 100vw;
+}
+
+.bottomTab {
+  border-top-width : 1px;
+  bottom : 0;
+  height : 60px;
+}
+
+.topTab {
+  border-bottom-width : 1px;
+  height : 40px;
+  top : 0;
+}
+
+a {
+  text-decoration : none;
+  text-transform : uppercase;
+}
+
+nav a {
+  align-items : center;
+  display : flex;
+  flex : 1;
+  justify-content : center;
+}
+
+nav a:nth-child(odd) {
+  background : #eeeeee;
+}
+
+nav a.active {
+  color: orange;
+}
+
+code {
+  background-color : #2e2e2e;
+  color : #f4f4f4;
+  display : inline-flex;
+  margin-top : 5px;
+  max-width : 100vw;
+  overflow : auto;
+  padding : 8px 16px;
+  white-space: pre;
+}
+
+h1 {
+  margin-bottom : 20px;
+  text-align : center;
+}
+
+h2 {
+  margin-bottom : 10px;
+}
+
+li {
+  background : #000000;
+  color : #ffffff;
+  list-style: none;
+  margin-top : 4px;
+  padding : 12px 24px;
+}
+
+a {
+  color: currentColor;
+}
