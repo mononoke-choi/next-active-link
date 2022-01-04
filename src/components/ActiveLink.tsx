@@ -1,8 +1,30 @@
-import { get, isUndefined } from 'lodash';
+import { get, isArray, isUndefined } from 'lodash';
 import { NextRouter } from 'next/dist/client/router';
 import { LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
+import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
+
+const resolveQueryWithDynamicPathname = (
+  href: Route['href'] | Route['href'][],
+) => {
+  const processToAsPath = (route: Route['href']) => {
+    const resolvedPathname: string = get(route, 'pathname', route);
+    const resolvedQuery: ParsedUrlQuery = get(route, 'query', {});
+
+    return Object.entries(resolvedQuery).reduce(
+      (prevValue, [key, value]) =>
+        prevValue.replace(`[${key}]`, value as string),
+      resolvedPathname,
+    );
+  };
+
+  if (isArray(href)) {
+    return href.map(route => processToAsPath(route));
+  } else {
+    return processToAsPath(href);
+  }
+};
 
 interface Route {
   href: LinkProps['href'];
@@ -16,16 +38,11 @@ interface ActiveLinkProps extends Route {
   }) => JSX.Element | null;
 }
 
-const ActiveLink = ({
-  href: passedHref,
-  children,
-  matcher,
-}: ActiveLinkProps) => {
+const ActiveLink = ({ href, children, matcher }: ActiveLinkProps) => {
   const router = useRouter();
   const { pathname: currentPathname } = router;
-  const currentRoute: string = get(passedHref, 'pathname', passedHref);
 
-  if (isUndefined(passedHref)) {
+  if (isUndefined(href)) {
     throw new Error('you must pass href to ActiveLink component');
   }
 
@@ -34,7 +51,7 @@ const ActiveLink = ({
   }
 
   // match exactly
-  if (currentPathname === currentRoute) {
+  if (currentPathname === resolveQueryWithDynamicPathname(href)) {
     return children({
       isActive: true,
       exact: true,
@@ -44,7 +61,7 @@ const ActiveLink = ({
   // match by matcher function
   if (matcher) {
     return children({
-      isActive: matcher(currentRoute, router),
+      isActive: matcher(href, router),
       exact: false,
     });
   }
@@ -57,4 +74,4 @@ const ActiveLink = ({
 };
 
 export default ActiveLink;
-export { ActiveLinkProps, Route };
+export { ActiveLinkProps, Route, resolveQueryWithDynamicPathname };
