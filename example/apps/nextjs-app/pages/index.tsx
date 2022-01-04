@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import MainDesc from '../components/mainDesc';
-import { UN_NESTED_PAGE } from '../const/routes';
+import { UN_NESTED_PAGE } from '../constants/routes';
 
 export function Index() {
   return (

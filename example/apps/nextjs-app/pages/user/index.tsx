@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import MainDesc from '../../components/mainDesc';
-import { USER_DETAIL1, USER_DETAIL2, USER_DETAIL3 } from '../../const/routes';
+import {
+  USER_DETAIL1,
+  USER_DETAIL2,
+  USER_DETAIL3,
+} from '../../constants/routes';
 
 export function Users() {
   return (

@@ -1,16 +1,16 @@
+import { ActiveLink } from '@mononoke-choi/next-active-link';
 import Link from 'next/link';
 import React from 'react';
-import { ActiveLink } from '../../../../dist/esm/index';
-import { ACTIVE_CLASS_NAME } from '../const/config';
-import { MAIN_NAVI } from '../const/routes';
+import { ACTIVE_CLASS_NAME } from '../constants/config';
+import { BOTTOM_TAB } from '../constants/routes';
 
 const BottomTab = () => {
   return (
     <nav className="bottomTab">
-      {MAIN_NAVI.map(({ name, route }) => (
-        <ActiveLink key={route} href={route}>
+      {BOTTOM_TAB.map(({ name, matcher, href }) => (
+        <ActiveLink key={name} href={href} matcher={matcher}>
           {({ isActive }) => (
-            <Link href={route}>
+            <Link href={href}>
               <a className={isActive ? ACTIVE_CLASS_NAME : ''}>{name}</a>
             </Link>
           )}
