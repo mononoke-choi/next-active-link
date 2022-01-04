@@ -1,4 +1,3 @@
-import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
@@ -28,7 +27,6 @@ const entryConfig = {
   ],
   plugins: [
     peerDepsExternal(),
-    optimizeLodashImports(),
     resolve(),
     commonjs(),
     typescript({ tsconfig: './tsconfig.json', outputToFilesystem: false }),

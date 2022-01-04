@@ -1,16 +1,37 @@
-import { get, isArray, isUndefined } from 'lodash';
 import { NextRouter } from 'next/dist/client/router';
 import { LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
-import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
+import { UrlObject } from 'url';
+
+function isUndefined(value: any): value is undefined {
+  return value === undefined;
+}
+
+function isNull(value: any): value is null {
+  return value === null;
+}
+
+function isInvalidValue(value: any): value is null | undefined {
+  return isNull(value) || isUndefined(value);
+}
+
+function isUrlObject(value: string | UrlObject): value is UrlObject {
+  return typeof value !== 'string';
+}
 
 const resolveQueryWithDynamicPathname = (
   href: Route['href'] | Route['href'][],
 ) => {
   const processToAsPath = (route: Route['href']) => {
-    const resolvedPathname: string = get(route, 'pathname', route);
-    const resolvedQuery: ParsedUrlQuery = get(route, 'query', {});
+    const resolvedPathname = isUrlObject(route) ? route.pathname : route;
+    const resolvedQuery = isUrlObject(route) ? route.query : {};
+
+    if (isInvalidValue(resolvedPathname) || isInvalidValue(resolvedQuery)) {
+      throw new Error(
+        'you must pass valid pathname or query value to ActiveLink component',
+      );
+    }
 
     return Object.entries(resolvedQuery).reduce(
       (prevValue, [key, value]) =>
@@ -19,7 +40,7 @@ const resolveQueryWithDynamicPathname = (
     );
   };
 
-  if (isArray(href)) {
+  if (Array.isArray(href)) {
     return href.map(route => processToAsPath(route));
   } else {
     return processToAsPath(href);
