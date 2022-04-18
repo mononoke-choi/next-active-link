@@ -1,5 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
+import resolve, { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
@@ -41,7 +41,7 @@ const entryConfig = {
 const definitionConfig = {
   input: 'dist/esm/types/index.d.ts',
   output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-  plugins: [dts()],
+  plugins: [dts(), nodeResolve()],
 };
 
 export default [entryConfig, definitionConfig];
